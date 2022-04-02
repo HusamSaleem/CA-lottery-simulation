@@ -13,7 +13,7 @@ class Simulation:
         
         # Dictionary that tracks the number of tickets per match
         self.detailed_winning_result = {
-            "None": 0,
+            "None" : 0,
             ticket_type : 0, 
             "1 + " + ticket_type : 0,
             "2 + " + ticket_type : 0,
@@ -64,7 +64,7 @@ class Simulation:
         for i, (key, value) in enumerate(self.detailed_winning_result.items()):
             frequency = (float(value) / number_of_tickets_generated) * 100
             
-            if (i == 0):
+            if (key == "None"):
                 data.append([key, "{:,}".format(value), "{:.4f}%".format(frequency), "${:,}".format(0), "${:,}".format(0)])
             else:
                 prize = winning_prizes[i - 1]
