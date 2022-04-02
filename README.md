@@ -13,6 +13,7 @@
 # Getting Started
 
 # Prerequisites
+- [Python](https://www.python.org/downloads/)
 - ```pip install columnar```
 - ```pip install requests_html```
 - [VSCode](https://code.visualstudio.com/) or any other IDE is fine
