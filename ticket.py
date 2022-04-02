@@ -4,12 +4,14 @@ import random
 locale.setlocale(locale.LC_ALL, 'en_US')
 
 class Ticket:
-    def __init__(self, ticket_name):
+    def __init__(self, ticket_name, special_name):
         self.name = ticket_name
+        self.special_name = special_name
         self.nums = []
         self.special = 0
         self.winning_prizes = []
 
+        # Cost per ticket in USD
         if (ticket_name == "Powerball" or ticket_name == "Megaball"):
             self.cost = 2
         elif (ticket_name == "Superball"):
@@ -39,6 +41,7 @@ class Ticket:
             self.nums.append(random.randint(1, nums_range))
         self.special = random.randint(1, special_range)
 
+    # Generate a random ticket based on the ticket type
     def generate_ticket(self):
         if self.name == "Powerball":
             # Powerball -> 5 numbers between 1 and 69, power number between 1 and 26
@@ -85,4 +88,4 @@ class Ticket:
             elif matched_nums == 3:
                 return ["3", self.winning_prizes[-6]] # 3 numbers matched
             else:
-                return ["None", 0] # Anything less than 
+                return ["None", 0] # Losing ticket

@@ -6,36 +6,39 @@ powerball_prizes_url = 'https://www.calottery.com/draw-games/powerball#section-c
 superball_prizes_url = 'https://www.calottery.com/draw-games/superlotto-plus#section-content-1-3'
 megaball_prizes_url = 'https://www.calottery.com/draw-games/mega-millions#section-content-1-3'
 
+# Scrapes the calottery website for the drawings and prize money for each ticket
 def get_winning_nums() -> list[Ticket]:
     session = HTMLSession()
 
     request = session.get(url)
     result = []
-    result.append(scrape_nums(request, '//*[@id="drawGame12"]/div[1]/ul', "Powerball"))
-    result.append(scrape_nums(request, '//*[@id="drawGame8"]/div[1]/ul', "Superball"))
-    result.append(scrape_nums(request, '//*[@id="drawGame15"]/div[1]/ul', "Megaball"))
+    result.append(scrape_nums(request, '//*[@id="drawGame12"]/div[1]/ul', "Powerball", "Powerball"))
+    result.append(scrape_nums(request, '//*[@id="drawGame8"]/div[1]/ul', "SuperLotto", "Superball"))
+    result.append(scrape_nums(request, '//*[@id="drawGame15"]/div[1]/ul', "Mega Millions", "Megaball"))
 
     get_prizes_for_winning_tickets(session, powerball_prizes_url, result[0])
     get_prizes_for_winning_tickets(session, superball_prizes_url, result[1])
     get_prizes_for_winning_tickets(session, megaball_prizes_url, result[2])
     return result
 
-def scrape_nums(request, xpath, ticket_name) -> Ticket:
+# Gets the winning numbers
+def scrape_nums(request, xpath, ticket_name, special_name) -> Ticket:
     nums_path = request.html.xpath(xpath)
     nums = []
 
     for line in nums_path:
         for num in line.text.split('\n'):
-            if ticket_name in num:
-                index = num.index(ticket_name)
+            if special_name in num:
+                index = num.index(special_name)
                 nums.append(int(num[0: index - 1]))
             else:
                 nums.append(int(num))
     
-    ticket = Ticket(ticket_name)
+    ticket = Ticket(ticket_name, special_name)
     ticket.set_ticket_nums(nums)
     return ticket
 
+# Gets the prize money for each ticket
 def get_prizes_for_winning_tickets(session, price_url, ticket):
     request = session.get(price_url)
 

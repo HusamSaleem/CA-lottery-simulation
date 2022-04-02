@@ -26,6 +26,7 @@ def handle_user_input():
         print("Exiting program...")
         sys.exit()
     
+    # Take in the user input for what tickets they want to simulate
     ticket_type = user_input
     if (ticket_type != 1 and ticket_type != 2 and ticket_type != 3):
         print("Please enter a valid number")
@@ -33,21 +34,27 @@ def handle_user_input():
         handle_user_input()
         return
 
+    ticket_name = ""
     if (ticket_type == 1):
         ticket_type = "Powerball"
+        ticket_name = "Powerball"
     elif (ticket_type == 2):
          ticket_type = "Superball"
+         ticket_name = "SuperLotto"
     else:
         ticket_type = "Megaball"
+        ticket_name = "Mega Millions"
 
     print_options_two()
     user_input = int(input("Enter your option as a number: "))
     
+    # Go back option
     if (user_input == 0):
         print_options_one()
         handle_user_input()
         return
     
+    # Let the user choose either an infinite simulation until jackpot or 'n' tickets generated
     simulation_type = user_input
     while (simulation_type != 1 and simulation_type != 2):
         print("Invalid number")
@@ -59,18 +66,21 @@ def handle_user_input():
             handle_user_input()
             return
     
-    # Choose how many times to execute
+    # Choose how many times to execute if user selected the finite simulation option
     num_of_times_to_execute = 0
     if (simulation_type == 2):
         while (num_of_times_to_execute <= 0):
             num_of_times_to_execute = int(input("Enter how many tickets to simulate (1-n): "))
     
-    verbose_option = input("Do you want to see what is happening during the simulation? (Y/N): ")
+    # User can choose to see what is happening during the simulation
+    # It is much slower to use this option
+    verbose_option = input("Do you want to see what is happening during the simulation? (Will take more time) (Y/N): ")
     while (verbose_option.lower() != "y" and verbose_option.lower() != "n"):
         verbose_option = input("Do you want to see what is happening during the simulation? (Y/N): ")
 
+    # Start running the simulation
     verbose_option = True if verbose_option.lower() == "y" else False
-    simulation = Simulation(ticket_type, num_of_times_to_execute, winning_tickets, verbose_option)
+    simulation = Simulation(ticket_name, ticket_type, num_of_times_to_execute, winning_tickets, verbose_option)
     simulation.run_simulation()
 
 if __name__ == "__main__":
@@ -79,7 +89,7 @@ if __name__ == "__main__":
     winning_tickets = get_winning_nums()
 
     print("--------------------------------")
-    print("The winning numbers for:", date.today())
+    print("The current drawings for:", date.today())
     print()
     for ticket in winning_tickets:
         ticket.to_string()

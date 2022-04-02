@@ -1,16 +1,17 @@
 import locale
-from re import T
 from columnar import columnar
-from numpy import number
 from ticket import Ticket
 locale.setlocale(locale.LC_ALL, 'en_US')
 
 class Simulation:
-    def __init__(self, ticket_type, num_of_times_to_execute, winning_tickets, verbose):
+    def __init__(self, ticket_name, ticket_type, num_of_times_to_execute, winning_tickets, verbose):
+        self.ticket_name = ticket_name
         self.ticket_type = ticket_type
         self.num_of_times_to_execute = num_of_times_to_execute
         self.winning_tickets = winning_tickets
         self.verbose = verbose
+        
+        # Dictionary that tracks the number of tickets per match
         self.detailed_winning_result = {
             "None": 0,
             ticket_type : 0, 
@@ -40,22 +41,23 @@ class Simulation:
             return self.winning_tickets[2].winning_prizes
 
     def _generate_random_ticket(self) -> Ticket:
-        ticket = Ticket(self.ticket_type)
+        ticket = Ticket(self.ticket_type, self.ticket_name)
         ticket.generate_ticket()
         return ticket
     
     def _print_final_report(self, money_spent, money_gained, number_of_tickets_generated):
         money_lost = money_spent - money_gained
         # General statistics
-        output = "================================================================\n"
-        output += "Total number of tickets generated: {:,}\n".format(number_of_tickets_generated)
-        output += "Total money spent ${:,.2f}\n".format(money_spent)
-        output += "Total money gained ${:,.2f}\n".format(money_gained)
-        output += "Total money lost ${:,.2f}\n".format(money_lost)
-        output += "================================================================"
+        general_stats = "================================================================\n"
+        general_stats += "Total number of tickets generated: {:,}\n".format(number_of_tickets_generated)
+        general_stats += "Total money spent: ${:,.2f}\n".format(money_spent)
+        general_stats += "Total money gained: ${:,.2f}\n".format(money_gained)
+        general_stats += "Total money lost: ${:,.2f}\n".format(money_lost)
+        general_stats += "================================================================"
 
         # Winning ticket number statistics
         # Calculate frequencies
+        # Also calculate prize money gained per match type
         winning_prizes = self.__get_winning_prizes()
         headers = ["Matches", "Tickets", "Frequency", "Prize money per ticket", "Prize money collected"]
         data = []
@@ -63,18 +65,17 @@ class Simulation:
             frequency = (float(value) / number_of_tickets_generated) * 100
             
             if (i == 0):
-                #output += "Losing tickets generated: {:, >20}, frequency: {:.0% >20}\n".format(value, frequency)
                 data.append([key, "{:,}".format(value), "{:.4f}%".format(frequency), "${:,}".format(0), "${:,}".format(0)])
             else:
                 prize = winning_prizes[i - 1]
                 prize_money_collected = prize * value
                 data.append([key, "{:,}".format(value), "{:.4f}%".format(frequency), "${:,}".format(prize), "${:,}".format(prize_money_collected)])
-                #output += "Winning tickets with {: >20} matched: {:, >20}, frequency: {:.0% >20}, prize per ticket {:, >20}\n".format(key, value, frequency, prize)
         
-        table = columnar(data, headers, no_borders=False)
-        print(output)
+        table = columnar(data, headers, no_borders=False) # Make a table using columnar
+        print(general_stats)
         print(table)
 
+    # TODO: replace with non-deprecated code
     def _print_statistics(self, money_spent, money_gained, number_of_tickets_generated):
         # For cursor positions
         UP = "\x1B[6A"
@@ -96,7 +97,8 @@ class Simulation:
         winning_ticket = self._get_winning_ticket()
 
         print("\n\n\n\n\n\n")
-        # If num_of_times_to_execute = -1, then execute infinitely until we find a jackpot
+
+        # If num_of_times_to_execute = 0, then execute infinitely until we find a jackpot
         while True:
             ticket = self._generate_random_ticket()
             ticket.set_winning_prizes(winning_ticket.winning_prizes)
