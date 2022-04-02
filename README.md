@@ -44,4 +44,4 @@
 
 # Conclusion
 - The example I showed above was very lucky
-- The program's final report when excluding outliers like in the example shows odds are very close to the game odds for the SuperLotto ticket specified on the [CA Lottery website](https://www.calottery.com/draw-games/superlotto-plus#section-content-1-3)
+- The program's final report when excluding outliers like in the example shows odds are very close to the game odds that the [CA Lottery](https://www.calottery.com/) specifies on their website
