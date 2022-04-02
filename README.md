@@ -41,3 +41,7 @@
 
 ![image](https://user-images.githubusercontent.com/60799172/161395243-89636581-c28c-4914-a8cd-73ca9cf41ba7.png)
 ![image](https://user-images.githubusercontent.com/60799172/161395267-cdb8cc77-391c-41aa-905c-0efcf7049c93.png)
+
+# Conclusion
+- The example I showed above was very lucky
+- The program's final report when excluding outliers like in the example shows odds are very close to the game odds for the SuperLotto ticket specified on the [CA Lottery website](https://www.calottery.com/draw-games/superlotto-plus#section-content-1-3)
