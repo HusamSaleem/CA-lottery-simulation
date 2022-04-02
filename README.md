@@ -21,21 +21,22 @@
 - Clone this repo
 - Run the main.py file
 
-# Examples
+# Example
 
-Program begins with showing the current drawings and prize money
+- Program begins with showing the current drawings and prize money
 
 ![image](https://user-images.githubusercontent.com/60799172/161394783-87e07f85-672e-44c4-80b2-1393744ebbbc.png)
 
-Choosing option ```2``` for the ```SuperLotto simulation```
+- Choosing option ```2``` for the ```SuperLotto simulation```
 
 ![image](https://user-images.githubusercontent.com/60799172/161394820-a8108896-ea26-4259-9464-c7cb2529dabc.png)
 
-Choosing the ```infinite simulation``` with the ```verbose``` option turned off
+- Choosing the ```infinite simulation``` with the ```verbose``` option turned off
 
 ![image](https://user-images.githubusercontent.com/60799172/161394832-b8ab60fc-107d-4737-b901-7587884aff17.png)
 
-The final report and general statistics is outputed to the console after the ```simulation``` completes
+- The final report and general statistics is outputed to the console after the ```simulation``` completes
+
 ![image](https://user-images.githubusercontent.com/60799172/161394869-1f79e639-17f5-49ca-8c6b-b96c6a3a0ac9.png)
 ![image](https://user-images.githubusercontent.com/60799172/161394879-5d62dd69-0f51-43a0-aaa1-80647bf0ad3f.png)
 
