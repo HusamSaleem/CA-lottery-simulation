@@ -19,9 +19,17 @@
 
 # Running the program
 - Clone this repo
-- run the main.py file
+- Run the main.py file
 
 # Examples
 
+Program begins with showing the current drawings and prize money
 ![image](https://user-images.githubusercontent.com/60799172/161394783-87e07f85-672e-44c4-80b2-1393744ebbbc.png)
+
+Choosing option ```2``` for the ```SuperLotto simulation```
+![image](https://user-images.githubusercontent.com/60799172/161394820-a8108896-ea26-4259-9464-c7cb2529dabc.png)
+
+Choosing the ```infinite simulation``` with the ```verbose``` option turned off
+![image](https://user-images.githubusercontent.com/60799172/161394832-b8ab60fc-107d-4737-b901-7587884aff17.png)
+
 
