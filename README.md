@@ -36,9 +36,7 @@
 ![image](https://user-images.githubusercontent.com/60799172/161394832-b8ab60fc-107d-4737-b901-7587884aff17.png)
 
 - The final report and general statistics is outputted to the console after the ```simulation``` completes
-- In this ```simulation```, we have actually gained $4,656,370.00 hence the - sign
+- In this ```simulation```, we have actually gained $14,819,606.00 hence the - sign which is pretty rare to see
 
-![image](https://user-images.githubusercontent.com/60799172/161394869-1f79e639-17f5-49ca-8c6b-b96c6a3a0ac9.png)
-![image](https://user-images.githubusercontent.com/60799172/161394879-5d62dd69-0f51-43a0-aaa1-80647bf0ad3f.png)
-
-
+![image](https://user-images.githubusercontent.com/60799172/161395243-89636581-c28c-4914-a8cd-73ca9cf41ba7.png)
+![image](https://user-images.githubusercontent.com/60799172/161395267-cdb8cc77-391c-41aa-905c-0efcf7049c93.png)
