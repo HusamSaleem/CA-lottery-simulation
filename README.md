@@ -4,6 +4,7 @@
 - This program will scape the current drawings on the [CA Lottery](https://www.calottery.com/) for the 3 main tickets ```Powerball, SuperLotto, Mega Millions```
 - It will also get the current prize money for each ticket respectively (Refer to [draw details](https://www.calottery.com/draw-games/powerball#section-content-1-3) for the prize money)
 - User will be able to choose the ticket they want to ```simulate```, and have 2 ```simulation``` types
+- The purpose is to showcase just how rare it is to win the jackpot prize
 
 
 # Simulation Types
